@@ -1,4 +1,2 @@
 # some wisdom
-if [[ "x$(which fortune 2> /dev/null)" != "x" ]] {
-    echo; fortune -a; echo
-}
+which fortune > /dev/null 2>&1 && echo && fortune -a && echo
