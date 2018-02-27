@@ -23,7 +23,7 @@ zstyle ':completion:*' substitute 1
 zstyle ':completion:*' use-compctl true
 zstyle ':completion:*' verbose true
 
-autoload -Uz compinit && compinit
+autoload -U compinit && compinit -d
 # End of lines added by compinstall
 
 # offer aliases as completions
@@ -32,3 +32,7 @@ setopt completealiases
 # if a glob pattern doesn't match any files print error instead of calling
 # command with glob pattern as argument
 setopt nomatch
+
+# use bash completion scripts when available
+autoload bashcompinit
+bashcompinit
