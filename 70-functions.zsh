@@ -6,12 +6,16 @@ e() {
     }
 }
 
+se() {
+    sudo -e $@
+}
+
 eblock() {
     $EDITOR $@
 }
 
 config() {
-    e $ZSH_CUSTOM/{aliases,functions}.zsh
+    e $ZCONFDIR/{70-functions,71-aliases}.zsh
     e -w ~/.zshrc
     reload
 }
@@ -32,6 +36,12 @@ default() {
     [[ -n $(typeset -m "$1") ]] && return 0 # $1 already exists
     typeset -g $1="$2"
     return 1
+}
+
+list_make_targets() {
+    make -pRrq : 2>/dev/null | \
+    awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($1 !~ "^[#.]") {print $1}}' | \
+    sort
 }
 
 watch() {
