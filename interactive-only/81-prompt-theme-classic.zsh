@@ -11,6 +11,7 @@ default THEME_CLASSIC_SHOW_LOCAL_HOST false
 # how many segments of the path are to be shown
 # see documentation for %~ at http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#Shell-state
 default THEME_CLASSIC_MAX_PATH_SEGMENTS 0
+default THEME_CLASSIC_MAX_PATH_SEGMENTS_TITLE $THEME_CLASSIC_MAX_PATH_SEGMENTS
 
 # set the default colors
 if [ "$(id -u)" = "0" ]; then
@@ -39,14 +40,17 @@ C_PROMPT="%{$THEME_CLASSIC_PROMPT%}"
 if [[ -n $SSH_CONNECTION ]] || $THEME_CLASSIC_SHOW_LOCAL_HOST; then
     # show host on remote connections
     HOST_TEXT="$C_UH_SEP@$C_HOST%m"
+    TITLE_HOST_TEXT="@%m"
 else
     # on local machines, just hide the host
     HOST_TEXT=""
+    TITLE_HOST_TEXT=""
 fi
 
 
 # the fun stuff
 PROMPT="$C_USER%n$HOST_TEXT$C_HP_SEP:$C_PATH%$THEME_CLASSIC_MAX_PATH_SEGMENTS~$C_PROMPT$ "
+TITLE_PROMPT="%n$TITLE_HOST_TEXT:%$THEME_CLASSIC_MAX_PATH_SEGMENTS_TITLE~"
 
 
 # and clean up temporary variables
