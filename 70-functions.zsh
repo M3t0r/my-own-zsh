@@ -58,6 +58,10 @@ watch() {
     done
 }
 
+pipenv() {
+    LC_ALL=en_GB.UTF-8 command pipenv $@
+}
+
 pcp() {
     if [[ $# -lt 2 ]] {
         echo "Usage: pcp FILE... DESTINATION"
