@@ -5,3 +5,6 @@ export LANG="C.UTF-8"
 [[ $(command which subl 2> /dev/null) ]] && export EDITOR="subl -w"
 [[ $(command which subl3 2> /dev/null) ]] && export EDITOR="subl3 -w"
 export VISUAL=$EDITOR
+
+export MDV_THEME="883.6584"
+export MDV_CODE_THEME="883.6584"
