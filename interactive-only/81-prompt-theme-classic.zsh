@@ -13,6 +13,8 @@ default THEME_CLASSIC_SHOW_LOCAL_HOST false
 default THEME_CLASSIC_MAX_PATH_SEGMENTS 0
 default THEME_CLASSIC_MAX_PATH_SEGMENTS_TITLE $THEME_CLASSIC_MAX_PATH_SEGMENTS
 
+default THEME_CLASSIC_SHOW_GIT_INFO true
+
 # set the default colors
 if [ "$(id -u)" = "0" ]; then
     # color the name red if it's root
@@ -26,6 +28,8 @@ default THEME_CLASSIC_UH_SEP    $fg[default]
 default THEME_CLASSIC_HOST      $fg[green]
 default THEME_CLASSIC_HP_SEP    $fg[default]
 default THEME_CLASSIC_PATH      $fg[blue]
+default THEME_CLASSIC_PB_SEP    $fg[default]
+default THEME_CLASSIC_BRANCH    $fg_bold[magenta]
 default THEME_CLASSIC_PROMPT    $fg[default]
 
 # set up ready to use
@@ -34,6 +38,8 @@ C_UH_SEP="%{$THEME_CLASSIC_UH_SEP%}"
 C_HOST="%{$THEME_CLASSIC_HOST%}"
 C_HP_SEP="%{$THEME_CLASSIC_HP_SEP%}"
 C_PATH="%{$THEME_CLASSIC_PATH%}"
+C_PB_SEP="%{$THEME_CLASSIC_PB_SEP%}"
+C_BRANCH="%{$THEME_CLASSIC_BRANCH%}"
 C_PROMPT="%{$THEME_CLASSIC_PROMPT%}"
 
 
@@ -48,8 +54,24 @@ else
 fi
 
 
+# substitute the prompt string before printing, allowing to invoke functions
+setopt PROMPT_SUBST
+
+if $THEME_CLASSIC_SHOW_GIT_INFO && which git 2>&1 > /dev/null; then
+    GIT_INFO="\$(git_prompt_info)"
+
+    function git_prompt_info() {
+        if git rev-parse --is-inside-work-tree 2>&1 > /dev/null; then
+            echo -en "$C_PB_SEP:$C_BRANCH"
+            git rev-parse --abbrev-ref HEAD
+        fi
+    }
+else
+    GIT_INFO=""
+fi
+
 # the fun stuff
-PROMPT="$C_USER%n$HOST_TEXT$C_HP_SEP:$C_PATH%$THEME_CLASSIC_MAX_PATH_SEGMENTS~$C_PROMPT$ "
+PROMPT="$C_USER%n$HOST_TEXT$C_HP_SEP:$C_PATH%$THEME_CLASSIC_MAX_PATH_SEGMENTS~$GIT_INFO$C_PROMPT$ "
 TITLE_PROMPT="%n$TITLE_HOST_TEXT:%$THEME_CLASSIC_MAX_PATH_SEGMENTS_TITLE~"
 
 
