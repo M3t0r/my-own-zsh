@@ -14,7 +14,8 @@ if [[ $lazy_load_path != "" ]]; then
             name=$1
         fi
 
-        name=$(echo $name | iconv -t US-ASCII -f UTF8-MAC -c)
+        [[ $OSMac ]] && mac_suffix="-MAC"
+        name=$(echo $name | iconv -t US-ASCII -f UTF8$mac_suffix -c)
 
         if [[ $name =~ "^$HOME.*" ]]; then
             # if $name starts with $HOME, remove $HOME
