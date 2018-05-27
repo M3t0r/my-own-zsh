@@ -31,3 +31,11 @@ fi
 # from https://github.com/mika/zsh-pony#edit-command-line-in-editor
 autoload edit-command-line && zle -N edit-command-line
 bindkey '\ee' edit-command-line # [esc]-e
+
+# include https://github.com/zsh-users/zsh-autosuggestions
+load_plugin zsh-autosuggestions
+ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
+
+# load syntax-highlighting
+load_plugin fast-syntax-highlighting
+
