@@ -57,13 +57,13 @@ fi
 # substitute the prompt string before printing, allowing to invoke functions
 setopt PROMPT_SUBST
 
-if $THEME_CLASSIC_SHOW_GIT_INFO && which git 2>&1 > /dev/null; then
+if $THEME_CLASSIC_SHOW_GIT_INFO && which git > /dev/null 2>&1; then
     GIT_INFO="\$(git_prompt_info)"
 
     function git_prompt_info() {
-        if git rev-parse --is-inside-work-tree 2>&1 > /dev/null; then
+        if git rev-parse --is-inside-work-tree > /dev/null 2>&1;  then
             echo -en "$C_PB_SEP:$C_BRANCH"
-            git rev-parse --abbrev-ref HEAD
+            git rev-parse --abbrev-ref HEAD 2> /dev/null
         fi
     }
 else
