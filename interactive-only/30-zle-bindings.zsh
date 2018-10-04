@@ -16,8 +16,8 @@ bindkey "^[s" insert-sudo # [alt]-s
 
 bindkey "^$terminfo[kcul1]" backward-word
 bindkey "^$terminfo[kcur1]"  forward-word
-bindkey '^[[1;5C' forward-word # [ctrl]+[right]
-bindkey '^[[1;5D' backward-word # [ctrl]+[right]
+bindkey '^[[1;5C' forward-word # [ctrl]-[right]
+bindkey '^[[1;5D' backward-word # [ctrl]-[right]
 
 # from https://github.com/robbyrussell/oh-my-zsh/blob/master/lib/key-bindings.zsh#L59
 if [[ "${terminfo[kdch1]}" != "" ]]; then
@@ -30,7 +30,7 @@ fi
 
 # from https://github.com/mika/zsh-pony#edit-command-line-in-editor
 autoload edit-command-line && zle -N edit-command-line
-bindkey '\ee' edit-command-line # [esc]-e
+bindkey '^x^e' edit-command-line # [ctrl]-x + [ctrl]-e
 
 # include https://github.com/zsh-users/zsh-autosuggestions
 load_plugin zsh-autosuggestions
