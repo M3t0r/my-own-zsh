@@ -36,3 +36,7 @@ setopt nomatch
 # use bash completion scripts when available
 autoload bashcompinit
 bashcompinit
+
+# load fzf if installed. Use the fzf installer (`/usr/local/opt/fzf/install`
+# in homebrew) to install this file.
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
