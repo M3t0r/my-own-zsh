@@ -1,6 +1,7 @@
 alias g='git'
-function gb() { git fetch -q && git checkout "$@" && git pull -q }
+function gb() { git fetch -q && git checkout "$@" && git pull -q; git status -sb }
 alias gmaster='gb master'
+alias gnew="gmaster; git checkout -b $@"
 alias gap="git add -p"
 alias gp='git push'
 alias gs='git status'
