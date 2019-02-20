@@ -1,0 +1,25 @@
+pcp() {
+    if [[ $# -lt 2 ]] {
+        echo "Usage: pcp FILE... DESTINATION"
+        return
+    }
+
+    if [[ $# -gt 2 ]] {
+        until [[ $# == 1 ]] {
+            echo $1
+            pcp "$1" "$@[$#]"
+            shift 1
+        }
+    } else {
+        dst=$@[$#] # letzter parameter ($@ ist 1-indiziert)
+        if [[ -d "$dst" ]] {
+            dst="$dst/$(basename $1)"
+        }
+        if [[ -d $1 ]] {
+            echo "could not copy \"$1\" as it is a directory" 1>&2
+            return
+            # TODO: rekursiv directorys kopieren
+        }
+        pv -pe "$1" > "$dst"
+    }
+}
