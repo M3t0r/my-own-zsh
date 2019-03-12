@@ -1,5 +1,5 @@
-[[ -n $OSLinux ]] && alias ls="ls -h --color=auto"
-[[ -n $OSMac ]] && alias ls="ls -h -G"
+[[ -n $OSLinux ]] && alias ls="ls -Fh --color=auto"
+[[ -n $OSMac ]] && alias ls="ls -Fh -G"
 alias l="ls"
 alias ll="l -l"
 alias la="ll -a"
