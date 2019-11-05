@@ -23,6 +23,10 @@ eblock() {
     $EDITOR $@
 }
 
+csv() {
+    column -s, -t < "$@" | less -#2 -N -S
+}
+
 config() {
     e $ZCONFDIR/{70-functions,71-aliases}.zsh
     e -w ~/.zshrc
