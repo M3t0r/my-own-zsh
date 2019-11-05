@@ -1,1 +1,1 @@
-export LESS="MiRPM?f%f, .%lt-%lb?B of %L."
+export LESS="S#5MiRPM?f%f, .%lt-%lb?B of %L."
