@@ -5,5 +5,5 @@
 setopt appendhistory
 
 HISTFILE=~/.zsh_histfile
-HISTSIZE=150 # number of commands available in the shell
-SAVEHIST=5000 # number of commands saved in $HISTFILE
+SAVEHIST=25000 # number of commands saved in $HISTFILE
+HISTSIZE=$SAVEHIST # number of commands available in the shell
