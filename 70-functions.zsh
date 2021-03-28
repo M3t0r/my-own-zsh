@@ -37,6 +37,11 @@ reload() {
     source ~/.zshrc
 }
 
+pcengines() {
+    echo 'Escape sequence: ^]'
+    dterm /dev/ttyUSB0 115200 8 n 1
+}
+
 links() {
     grep -o -P "<a[^<>]+href=\"[^\"]+\"[^<>]*>" | grep -o -P "http[^\"]+"
 }
