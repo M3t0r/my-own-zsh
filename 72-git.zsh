@@ -1,10 +1,11 @@
 alias g='git'
-function gb() { git fetch -q && git checkout "$@" && git pull -q; git status -sb }
+function gb() { git fetch -q && git checkout "$@" && git pull -q; git status -sb; }
 alias gmaster='gb master'
 alias gnew="gmaster; git checkout -b $@"
 alias gap="git add -p"
 alias gp='git push'
 alias gs='git status'
+alias gput='git push --set-upstream origin HEAD'
 # http://fredkschott.com/post/2014/02/git-log-is-so-2005/
 #alias glg='git log --graph --format="%Cred%h %Cblue%>>(16)%ar %Creset%<($(echo $(tput cols) - 36 | bc),trunc)%s %Cgreen%>>(6,trunc)%cn"'
 alias glg='git log --oneline --decorate --all --graph --simplify-by-decoration'
