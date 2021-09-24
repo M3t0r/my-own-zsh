@@ -30,7 +30,7 @@ default THEME_CLASSIC_HP_SEP    $fg[default]
 default THEME_CLASSIC_PATH      $fg[blue]
 default THEME_CLASSIC_PB_SEP    $fg[default]
 default THEME_CLASSIC_BRANCH    $fg_bold[magenta]
-default THEME_CLASSIC_PROMPT    $fg[default]
+default THEME_CLASSIC_PROMPT    $fg_no_bold[default]
 
 # set up ready to use
 C_USER="%{$THEME_CLASSIC_USER%}"
