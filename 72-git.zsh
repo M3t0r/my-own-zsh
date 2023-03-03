@@ -2,6 +2,7 @@ alias g='git'
 function gb() { git fetch --quiet && git checkout "$@" && git pull --quiet --autostash; git status -sb; }
 alias gmaster='gb master'
 alias gmain='gb main'
+alias gnew='git swtich -c'
 alias gap="git add -p"
 alias gp='git push'
 alias gs='git status'
