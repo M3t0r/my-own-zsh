@@ -2,6 +2,7 @@ export LANG="C.UTF-8"
 
 [[ $(command -v nano 2> /dev/null) ]] && export EDITOR="nano"
 [[ $(command -v vim 2> /dev/null) ]] && export EDITOR="vim"
+[[ $(command -v nvim 2> /dev/null) ]] && export EDITOR="nvim"
 [[ $(command -v subl 2> /dev/null) && ! -n $SSH_CONNECTION ]] && export EDITOR="subl -w"
 [[ $(command -v subl3 2> /dev/null) && ! -n $SSH_CONNECTION ]] && export EDITOR="subl3 -w"
 export VISUAL=$EDITOR
