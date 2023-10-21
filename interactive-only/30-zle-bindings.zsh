@@ -47,5 +47,5 @@ load_plugin zsh-autosuggestions
 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 
 # load syntax-highlighting
-load_plugin fast-syntax-highlighting
+load_plugin F-Sy-H
 

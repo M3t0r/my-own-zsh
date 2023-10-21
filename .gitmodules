@@ -1,5 +1,5 @@
 [submodule "3rd-party/fast-syntax-highlighting"]
-	path = 3rd-party/fast-syntax-highlighting
+	path = 3rd-party/F-Sy-H
 	url = https://github.com/zdharma/fast-syntax-highlighting.git
 [submodule "3rd-party/zsh-autosuggestions"]
 	path = 3rd-party/zsh-autosuggestions
