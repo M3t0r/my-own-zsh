@@ -37,6 +37,9 @@ setopt nomatch
 autoload bashcompinit
 bashcompinit
 
-# load fzf if installed. Use the fzf installer (`/usr/local/opt/fzf/install`
-# in homebrew) to install this file.
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [[ -f /usr/share/fzf/completion.zsh ]]; then # path on arch
+    source /usr/share/fzf/completion.zsh
+    source /usr/share/fzf/key-bindings.zsh
+elif [[ -f ~/.fzf.zsh ]]; then # old homebrew location
+    source ~/.fzf.zsh
+fi
