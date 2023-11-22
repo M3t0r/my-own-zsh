@@ -9,3 +9,6 @@ export VISUAL=$EDITOR
 
 export MDV_THEME="883.6584"
 export MDV_CODE_THEME="883.6584"
+
+export GOPATH="${HOME}/.gofuckyourself/"
+export GOBIN="${HOME}/.local/bin/"
