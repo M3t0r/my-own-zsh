@@ -4,11 +4,9 @@ alias l="ls"
 alias ll="l -l"
 alias la="ll -a"
 
-alias journal="journalctl -e"
-
-alias ipython="ipython --classic --pprint"
-
 alias pudb="python3 -m pudb.run"
 
 alias hexdump="hexdump -C"
 alias hex="hexdump"
+
+alias s=tmux-sessionizer
