@@ -1,0 +1,36 @@
+zsh-completion-from-bash() {
+    func_dir="${HOME}/.zsh-functions"
+    bash_func_dir="/usr/share/bash-completion/completions"
+
+    name="${1:?command name required}"
+
+    if ! command -v "$name" >/dev/null; then
+        echo "not installed, skipping completion: $name" 1>&2
+        return 0
+    fi
+
+    f="${bash_func_dir}/${name}"
+    if [[ ! -f "$f" ]]; then
+        echo "Bash completion file not found: $f" 1>&2
+        return 2
+    fi
+
+    comp_fn="$(awk -v cmd=$name '$0 ~ cmd && match($0, /^\s*complete.+-F\s+(\S+)/, res) {print res[1] }' < $f)"
+    if [[ $comp_fn == "" ]]; then
+        echo "Completion generation failed: $f: no 'complete -F' found in" 1>&2
+        return 1
+    fi
+
+    if [[ ! -d "${func_dir}" ]]; then
+        mkdir "${func_dir}"
+        fpath=("${func_dir}" $fpath)
+        echo "created '${func_dir}'" 1>&2
+    fi
+
+    cat > "${func_dir}/_${name}" <<EOF
+#compdef $name
+
+source $f
+$comp_fn "\$@"
+EOF
+}

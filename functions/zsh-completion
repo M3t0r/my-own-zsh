@@ -1,0 +1,26 @@
+zsh-completion() {
+    func_dir="${HOME}/.zsh-functions"
+
+    name="${1:?command name required}"
+    generate_command="${2:?command to generate completion code required}"
+
+    if ! command -v "$name" >/dev/null; then
+        echo "not installed, skipping completion: $name" 1>&2
+        return 0
+    fi
+
+    completion="$(sh -ec "${generate_command}")"
+    completion_exit=$?
+    if [[ $completion_exit -ne 0 ]]; then
+        echo "Completion generation failed: '${generate_command}': $completion_exit" 1>&2
+        return $completion_exit
+    fi
+
+    if [[ ! -d "${func_dir}" ]]; then
+        mkdir "${func_dir}"
+        fpath=("${func_dir}" $fpath)
+        echo "created '${func_dir}'" 1>&2
+    fi
+
+    echo "${completion}" > "${func_dir}/_${name}"
+}

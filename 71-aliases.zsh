@@ -10,3 +10,6 @@ alias hexdump="hexdump -C"
 alias hex="hexdump"
 
 alias s=tmux-sessionizer
+
+alias kc="kubie ctx"
+alias kn="kubie ns"

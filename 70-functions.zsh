@@ -7,22 +7,6 @@ if [[ -d "${HOME}/.zsh-functions" ]]; then
     fpath=("${HOME}/.zsh-functions" $fpath)
 fi
 
-e() {
-    if [[ $EDITOR == "subl -w" ]] {
-        subl $@
-    } else {
-        e $@
-    }
-}
-
-se() {
-    sudo -e $@
-}
-
-eblock() {
-    $EDITOR $@
-}
-
 csv() {
     column -s, -t < "$@" | less -#2 -N -S
 }

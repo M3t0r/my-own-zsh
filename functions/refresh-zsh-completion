@@ -1,0 +1,4 @@
+refresh-zsh-completion() {
+    zsh-completion-from-bash kubie
+    zsh-completion rye 'rye self completion -s zsh'
+}
