@@ -79,6 +79,7 @@ fi
 
 if $THEME_CLASSIC_SHOW_KUBE_INFO && which kubectl > /dev/null 2>&1; then
     KUBE_INFO="\$(kube_prompt_info)"
+    zmodload -F zsh/stat b:zstat 2>/dev/null || autoload -Uz zstat
 
     __kube_context_cache=""
     __kube_config_mtime=0
