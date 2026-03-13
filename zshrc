@@ -5,17 +5,25 @@ conffiles=($ZCONFDIR/*.zsh)
 conffiles+=($ZCONFDIR/interactive-only/*.zsh)
 
 # expand and sort all found configfiles
-IFS=$(echo) # only split on newline
-e_conffiles=$(for l in $(realpath $conffiles); do echo $(basename $l)$l; done | sort)
+e_conffiles=()
+for conf in $conffiles; do
+    baseconf=$(basename "$conf")
+    e_conffiles+=("$baseconf:$conf")
+done
+
+e_conffiles=(
+    $(echo $e_conffiles | sort)
+)
 
 conffiles=()
-echo $e_conffiles | while read -r -d / && read -r file; do conffiles+="/"$file; done
+for conf in $e_conffiles; do
+    conffiles+=("${conf#*:}")
+done
 
 for conf in $conffiles; do
-    unset IFS
     [[ $DEBUG ]] && echo Loading $conf
     source $conf
 done;
 
+unset baseconf
 unset e_conffiles
-unset IFS
