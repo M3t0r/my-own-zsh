@@ -27,7 +27,7 @@ bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 
 # from https://github.com/ohmyzsh/ohmyzsh/blob/5bf7f9c83325a6cb2752e14ca01a574dbeef206e/lib/key-bindings.zsh#L78-L90
-if [[ "${terminfo[kdch1]}" != "" ]]; then
+if [[ -n "${terminfo[kdch1]}" ]]; then
   bindkey "${terminfo[kdch1]}" delete-char            # [Delete] - delete forward
 else
   bindkey "^[[3~" delete-char
