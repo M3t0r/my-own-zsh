@@ -18,10 +18,13 @@ insert-sudo () {
 zle -N insert-sudo
 bindkey "^[s" insert-sudo # [alt]-s
 
-# bindkey "$terminfo[kcul1]" backward-word
-# bindkey "$terminfo[kcur1]"  forward-word
-bindkey '^[[1;5C' forward-word # [ctrl]-[right]
-bindkey '^[[1;5D' backward-word # [ctrl]-[right]
+# [ctrl]-[right]
+[[ -n "${terminfo[kRIT5]}" ]] && bindkey "${terminfo[kRIT5]}" forward-word
+bindkey '^[[1;5C' forward-word
+
+# [ctrl]-[left]
+[[ -n "${terminfo[kLFT5]}" ]] && bindkey "${terminfo[kLFT5]}" backward-word
+bindkey '^[[1;5D' backward-word
 
 # from https://github.com/ohmyzsh/ohmyzsh/blob/5bf7f9c83325a6cb2752e14ca01a574dbeef206e/lib/key-bindings.zsh#L78-L90
 if [[ "${terminfo[kdch1]}" != "" ]]; then
