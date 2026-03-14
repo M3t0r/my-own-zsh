@@ -10,7 +10,11 @@ zle -N expand-or-complete-with-dots
 bindkey "^I" expand-or-complete-with-dots # [tab], replaces default complete with tab
 
 # http://stackoverflow.com/a/970202
-insert-sudo () { zle beginning-of-line; zle -U "sudo " }
+insert-sudo () {
+  [[ $BUFFER == sudo\ * ]] && return
+  BUFFER="sudo $BUFFER"
+  CURSOR=$(( CURSOR + 5 ))
+}
 zle -N insert-sudo
 bindkey "^[s" insert-sudo # [alt]-s
 
@@ -48,4 +52,3 @@ ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 
 # load syntax-highlighting
 load_plugin F-Sy-H
-
