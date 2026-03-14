@@ -40,10 +40,14 @@ fi
 if [[ -n "${terminfo[khome]}" ]]; then
   bindkey "${terminfo[khome]}" beginning-of-line
 fi
+bindkey "^[[H" beginning-of-line
+bindkey "^[[1~" beginning-of-line
 # [End] - Go to end of line
 if [[ -n "${terminfo[kend]}" ]]; then
   bindkey "${terminfo[kend]}"  end-of-line
 fi
+bindkey "^[[F" end-of-line
+bindkey "^[[4~" end-of-line
 
 # from https://github.com/mika/zsh-pony#edit-command-line-in-editor
 autoload edit-command-line && zle -N edit-command-line
